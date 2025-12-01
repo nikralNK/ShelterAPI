@@ -99,3 +99,24 @@ def delete_application(
     db.commit()
 
     return None
+
+@router.get("/guardian/{guardian_email}/animal/{animal_id}", response_model=Optional[ApplicationResponse])
+def get_application_by_email_and_animal(
+    guardian_email: str,
+    animal_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    from app.models.guardian import Guardian
+
+    guardian = db.query(Guardian).filter(Guardian.email == guardian_email).first()
+    if not guardian:
+        return None
+
+    application = db.query(Application)\
+        .filter(Application.idguardian == guardian.id)\
+        .filter(Application.idanimal == animal_id)\
+        .order_by(Application.applicationdate.desc())\
+        .first()
+
+    return application
