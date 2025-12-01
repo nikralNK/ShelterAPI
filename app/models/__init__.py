@@ -5,3 +5,4 @@ from app.models.enclosure import Enclosure
 from app.models.animal import Animal
 from app.models.application import Application
 from app.models.favorite import Favorite
+from app.models.veterinarian import Veterinarian
