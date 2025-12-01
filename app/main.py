@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.routers import auth, users, animals, applications, favorites, veterinarians
+from app.routers import auth, users, animals, applications, favorites, veterinarians, medical_records
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -23,6 +23,7 @@ app.include_router(animals.router, prefix=f"{settings.API_V1_STR}/animals", tags
 app.include_router(applications.router, prefix=f"{settings.API_V1_STR}/applications", tags=["applications"])
 app.include_router(favorites.router, prefix=f"{settings.API_V1_STR}/favorites", tags=["favorites"])
 app.include_router(veterinarians.router, prefix=f"{settings.API_V1_STR}/veterinarians", tags=["veterinarians"])
+app.include_router(medical_records.router, prefix=f"{settings.API_V1_STR}/medical-records", tags=["medical-records"])
 
 @app.get("/")
 async def root():

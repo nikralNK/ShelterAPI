@@ -6,3 +6,4 @@ from app.models.animal import Animal
 from app.models.application import Application
 from app.models.favorite import Favorite
 from app.models.veterinarian import Veterinarian
+from app.models.medical_record import MedicalRecord
